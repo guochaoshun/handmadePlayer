@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>文件不同处理方案耗时趋势（拟合至1GB）</title>
+    <script src="https://cdn.jsdelivr.net/npm/echarts@5.4.3/dist/echarts.min.js"></script>
+    <style>
+        body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif; background-color: #f5f5f7; margin: 0; padding: 40px; }
+        .container { background: white; border-radius: 12px; box-shadow: 0 4px 12px rgba(0,0,0,0.05); padding: 20px; }
+        .header { text-align: center; margin-bottom: 20px; }
+        .header h1 { margin: 0; color: #333; }
+        .header p { color: #666; margin-top: 8px; }
+        .table-container { margin-top: 18px; overflow-x: auto; }
+        table { width: 100%; border-collapse: collapse; font-size: 13px; }
+        thead th { position: sticky; top: 0; background: #fafafa; text-align: left; color: #333; border-bottom: 1px solid #eee; padding: 10px 10px; white-space: nowrap; }
+        tbody td { border-bottom: 1px solid #f0f0f0; padding: 9px 10px; color: #444; white-space: nowrap; }
+        tbody tr:hover td { background: #fcfcff; }
+        .muted { color: #888; }
+        .chip { display: inline-block; padding: 2px 8px; border-radius: 999px; font-size: 12px; }
+        .chip-red { background: rgba(238,102,102,0.12); color: #b63e3e; }
+        .chip-yellow { background: rgba(250,200,88,0.18); color: #8a6b00; }
+        .chip-blue { background: rgba(115,192,222,0.18); color: #2b6b85; }
+        .chip-green { background: rgba(59,162,114,0.18); color: #2d6f50; }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>文件不同处理方案的耗时趋势图</h1>
+            <p>包含实测散点数据，以及基于实测数据拟合至 1GB（1024MB）的趋势预测</p>
+            <p style="font-size: 13px; color: #999;">💡 提示：因为“头部写入脏数据”耗时过高，其他方案的线几乎贴在X轴上。您可以框选图表下方区域放大查看细节。</p>
+        </div>
+        <div id="main" style="width: 100%; height: 700px;"></div>
+        <div class="table-container">
+            <div style="display:flex; gap:10px; align-items:center; justify-content:space-between; margin: 8px 0 10px 0;">
+                <div style="font-weight: 600; color:#333;">原始数据表</div>
+                <div class="muted">单位：耗时按原始记录（ms/s）展示；图中统一换算为秒</div>
+            </div>
+            <table id="data-table">
+                <thead>
+                    <tr>
+                        <th>输入文件</th>
+                        <th>原始大小</th>
+                        <th><span class="chip chip-red">头部写入脏数据</span></th>
+                        <th><span class="chip chip-yellow">尾部写入脏数据</span></th>
+                        <th><span class="chip chip-blue">头部加密</span></th>
+                        <th><span class="chip chip-green">头部解密(还原)</span></th>
+                    </tr>
+                </thead>
+                <tbody></tbody>
+            </table>
+        </div>
+    </div>
+    <script>
+        var chartDom = document.getElementById('main');
+        var myChart = echarts.init(chartDom);
+
+        function secondsFrom(value, unit) {
+            if (unit === 'ms') {
+                return value / 1000.0;
+            }
+            return value;
+        }
+
+        function linearFit(points) {
+            var n = points.length;
+            if (n < 2) {
+                return { a: 0, b: 0 };
+            }
+            var sumX = 0, sumY = 0, sumXX = 0, sumXY = 0;
+            for (var i = 0; i < n; i++) {
+                var x = points[i][0];
+                var y = points[i][1];
+                sumX += x;
+                sumY += y;
+                sumXX += x * x;
+                sumXY += x * y;
+            }
+            var denom = n * sumXX - sumX * sumX;
+            if (denom === 0) {
+                return { a: 0, b: sumY / n };
+            }
+            var a = (n * sumXY - sumX * sumY) / denom;
+            var b = (sumY - a * sumX) / n;
+            return { a: a, b: b };
+        }
+
+        function makeTrendLine(fit, color) {
+            var xs = [0, 128, 256, 384, 512, 640, 768, 896, 1024];
+            var data = [];
+            for (var i = 0; i < xs.length; i++) {
+                var x = xs[i];
+                var y = fit.a * x + fit.b;
+                if (y < 0) {
+                    y = 0;
+                }
+                data.push([x, Number(y.toFixed(6))]);
+            }
+            return {
+                type: 'line',
+                data: data,
+                showSymbol: false,
+                lineStyle: { type: 'dashed', color: color }
+            };
+        }
+
+        var raw = [
+            { file: '2KB.png', sizeText: '2 KB', sizeMB: 2 / 1024.0, headDirty: { v: 2.631, u: 'ms' }, tailDirty: { v: 0.698, u: 'ms' }, headEncrypt: { v: 1.203, u: 'ms' }, headDecrypt: { v: 9.373, u: 'ms' } },
+            { file: '16KB.png', sizeText: '17 KB', sizeMB: 17 / 1024.0, headDirty: { v: 23.006, u: 'ms' }, tailDirty: { v: 0.803, u: 'ms' }, headEncrypt: { v: 0.652, u: 'ms' }, headDecrypt: { v: 0.590, u: 'ms' } },
+            { file: '57KB.png', sizeText: '59 KB', sizeMB: 59 / 1024.0, headDirty: { v: 1.021, u: 'ms' }, tailDirty: { v: 0.714, u: 'ms' }, headEncrypt: { v: 0.267, u: 'ms' }, headDecrypt: { v: 0.488, u: 'ms' } },
+            { file: '116KB.png', sizeText: '127 KB', sizeMB: 127 / 1024.0, headDirty: { v: 0.998, u: 'ms' }, tailDirty: { v: 0.247, u: 'ms' }, headEncrypt: { v: 0.261, u: 'ms' }, headDecrypt: { v: 0.484, u: 'ms' } },
+            { file: '554KB.png', sizeText: '520 KB', sizeMB: 520 / 1024.0, headDirty: { v: 4.896, u: 'ms' }, tailDirty: { v: 0.526, u: 'ms' }, headEncrypt: { v: 0.547, u: 'ms' }, headDecrypt: { v: 0.511, u: 'ms' } },
+            { file: '6100KB.PNG', sizeText: '6.1 MB', sizeMB: 6.1, headDirty: { v: 23.930, u: 'ms' }, tailDirty: { v: 0.863, u: 'ms' }, headEncrypt: { v: 0.766, u: 'ms' }, headDecrypt: { v: 0.670, u: 'ms' } },
+            { file: 'banjun.mp4', sizeText: '5.5 MB', sizeMB: 5.5, headDirty: { v: 26.359, u: 'ms' }, tailDirty: { v: 0.642, u: 'ms' }, headEncrypt: { v: 0.493, u: 'ms' }, headDecrypt: { v: 0.801, u: 'ms' } },
+            { file: '17679260338258.mp4', sizeText: '39.9 MB', sizeMB: 39.9, headDirty: { v: 190.940, u: 'ms' }, tailDirty: { v: 0.371, u: 'ms' }, headEncrypt: { v: 1.943, u: 'ms' }, headDecrypt: { v: 6.847, u: 'ms' } },
+            { file: '视频79M.mov', sizeText: '79.8 MB', sizeMB: 79.8, headDirty: { v: 446.006, u: 'ms' }, tailDirty: { v: 0.385, u: 'ms' }, headEncrypt: { v: 1.834, u: 'ms' }, headDecrypt: { v: 8.452, u: 'ms' } },
+            { file: '视频159M.mov', sizeText: '159.6 MB', sizeMB: 159.6, headDirty: { v: 866.681, u: 'ms' }, tailDirty: { v: 1.004, u: 'ms' }, headEncrypt: { v: 1.636, u: 'ms' }, headDecrypt: { v: 143.439, u: 'ms' } },
+            { file: '视频319M.mov', sizeText: '319.2 MB', sizeMB: 319.2, headDirty: { v: 2.762, u: 's' }, tailDirty: { v: 1.086, u: 'ms' }, headEncrypt: { v: 1.691, u: 'ms' }, headDecrypt: { v: 23.533, u: 'ms' } },
+            { file: '视频638M.mov', sizeText: '638.5 MB', sizeMB: 638.5, headDirty: { v: 5.038, u: 's' }, tailDirty: { v: 23.211, u: 'ms' }, headEncrypt: { v: 22.875, u: 'ms' }, headDecrypt: { v: 144.467, u: 'ms' } }
+        ];
+
+        function timeText(t) {
+            if (t.u === 's') {
+                return t.v.toFixed(3) + 's';
+            }
+            return t.v.toFixed(3) + 'ms';
+        }
+
+        var headDirtyPoints = [];
+        var tailDirtyPoints = [];
+        var headEncryptPoints = [];
+        var headDecryptPoints = [];
+
+        for (var i = 0; i < raw.length; i++) {
+            var r = raw[i];
+            headDirtyPoints.push([Number(r.sizeMB.toFixed(6)), secondsFrom(r.headDirty.v, r.headDirty.u)]);
+            tailDirtyPoints.push([Number(r.sizeMB.toFixed(6)), secondsFrom(r.tailDirty.v, r.tailDirty.u)]);
+            headEncryptPoints.push([Number(r.sizeMB.toFixed(6)), secondsFrom(r.headEncrypt.v, r.headEncrypt.u)]);
+            headDecryptPoints.push([Number(r.sizeMB.toFixed(6)), secondsFrom(r.headDecrypt.v, r.headDecrypt.u)]);
+        }
+
+        var headDirtyFit = linearFit(headDirtyPoints);
+        var tailDirtyFit = linearFit(tailDirtyPoints);
+        var headEncryptFit = linearFit(headEncryptPoints);
+        var headDecryptFit = linearFit(headDecryptPoints);
+
+        var option = {
+            tooltip: {
+                trigger: 'axis',
+                axisPointer: { type: 'cross' },
+                formatter: function (params) {
+                    let res = '<strong>文件大小: ' + params[0].value[0] + ' MB</strong><br/>';
+                    for (let i = 0; i < params.length; i++) {
+                        res += params[i].marker + params[i].seriesName + ': ' + params[i].value[1] + ' 秒<br/>';
+                    }
+                    return res;
+                }
+            },
+            legend: {
+                top: '0%',
+                data: [
+                    "头部写入脏数据 (实测)",
+                    "头部写入脏数据 (1GB拟合趋势)",
+                    "尾部写入脏数据 (实测)",
+                    "尾部写入脏数据 (1GB拟合趋势)",
+                    "头部加密 (实测)",
+                    "头部加密 (1GB拟合趋势)",
+                    "头部解密(还原) (实测)",
+                    "头部解密(还原) (1GB拟合趋势)"
+                ]
+            },
+            grid: { left: '5%', right: '5%', bottom: '5%', containLabel: true },
+            toolbox: {
+                feature: {
+                    dataZoom: { yAxisIndex: 'none', title: { zoom: '区域缩放', back: '还原' } },
+                    restore: { title: '还原' },
+                    saveAsImage: { title: '保存为图片' }
+                }
+            },
+            xAxis: {
+                type: 'value',
+                name: '文件大小 (MB)',
+                nameLocation: 'middle',
+                nameGap: 30,
+                min: 0,
+                max: 1050,
+                splitLine: { show: true, lineStyle: { type: 'dashed', color: '#eee' } }
+            },
+            yAxis: {
+                type: 'value',
+                name: '耗时 (秒)',
+                splitLine: { show: true, lineStyle: { color: '#eee' } }
+            },
+            series: [
+                { name: "头部写入脏数据 (实测)", type: "scatter", data: headDirtyPoints, itemStyle: { color: "#ee6666" } },
+                Object.assign({ name: "头部写入脏数据 (1GB拟合趋势)" }, makeTrendLine(headDirtyFit, "#ee6666")),
+                { name: "尾部写入脏数据 (实测)", type: "scatter", data: tailDirtyPoints, itemStyle: { color: "#fac858" } },
+                Object.assign({ name: "尾部写入脏数据 (1GB拟合趋势)" }, makeTrendLine(tailDirtyFit, "#fac858")),
+                { name: "头部加密 (实测)", type: "scatter", data: headEncryptPoints, itemStyle: { color: "#73c0de" } },
+                Object.assign({ name: "头部加密 (1GB拟合趋势)" }, makeTrendLine(headEncryptFit, "#73c0de")),
+                { name: "头部解密(还原) (实测)", type: "scatter", data: headDecryptPoints, itemStyle: { color: "#3ba272" } },
+                Object.assign({ name: "头部解密(还原) (1GB拟合趋势)" }, makeTrendLine(headDecryptFit, "#3ba272"))
+            ]
+        };
+        myChart.setOption(option);
+
+        var tbody = document.querySelector('#data-table tbody');
+        var html = '';
+        for (var i = 0; i < raw.length; i++) {
+            var r = raw[i];
+            html += '<tr>'
+                + '<td>' + r.file + '</td>'
+                + '<td class="muted">' + r.sizeText + '</td>'
+                + '<td>' + timeText(r.headDirty) + '</td>'
+                + '<td>' + timeText(r.tailDirty) + '</td>'
+                + '<td>' + timeText(r.headEncrypt) + '</td>'
+                + '<td>' + timeText(r.headDecrypt) + '</td>'
+                + '</tr>';
+        }
+        tbody.innerHTML = html;
+    </script>
+</body>
+</html>

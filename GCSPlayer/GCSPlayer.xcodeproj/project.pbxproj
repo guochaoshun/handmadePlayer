@@ -1,0 +1,409 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		17BE14BBA5FF431CE5A77265 /* libavformat.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8AEFD4BDD8973D3B718AF4A8 /* libavformat.xcframework */; };
+		38AF1863100A576E37A0162F /* MetalKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 35A0B251AF1E36BC44472B2F /* MetalKit.framework */; };
+		3A035B88E06A10459D93D3D4 /* libavutil.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7AD0DA6A08E830B02B81864D /* libavutil.xcframework */; };
+		42BF871FC6677169C4089141 /* libiconv.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C0E415C7AC7C0AC450F343F /* libiconv.tbd */; };
+		4E6DBE056B8FB270AC8FC5E8 /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F99D93AC6C6D4BB2DFC54C71 /* AudioToolbox.framework */; };
+		53F39DD8937DA66C6C6B6FA6 /* libswscale.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F759BD5F2927D5493672AEC /* libswscale.xcframework */; };
+		76942813CC8FAC990C409E95 /* libbz2.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 7185A41F6F495C92C0BBEC3E /* libbz2.tbd */; };
+		7E21A7A6A5E12E5713ED0515 /* VideoToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B922A2D9783110EA9F3498BA /* VideoToolbox.framework */; };
+		8460A4CFB5E8C71F2D03C26A /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 49DFCF47A51CC1AA0A4186FA /* AVFoundation.framework */; };
+		995943931757904D3D5322C3 /* libz.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = BE2D886AB4D6291C89E95D1C /* libz.tbd */; };
+		9FF8C9F49931170637F1DE7D /* banjun_encrypted.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 1DCFB7E9E112B89DA91EEA8C /* banjun_encrypted.mp4 */; };
+		D20F0F8138FFF553CB0D7AB3 /* libavcodec.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = C6767B8DE96CA2C47F07F241 /* libavcodec.xcframework */; };
+		D88D9F2810459562E9D66460 /* libswresample.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = BDA1BEFA896A067BAF5D6BAE /* libswresample.xcframework */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		1DCFB7E9E112B89DA91EEA8C /* banjun_encrypted.mp4 */ = {isa = PBXFileReference; includeInIndex = 1; name = banjun_encrypted.mp4; path = GCSPlayer/banjun_encrypted.mp4; sourceTree = "<group>"; };
+		35A0B251AF1E36BC44472B2F /* MetalKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MetalKit.framework; path = System/Library/Frameworks/MetalKit.framework; sourceTree = SDKROOT; };
+		49DFCF47A51CC1AA0A4186FA /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		4C0E415C7AC7C0AC450F343F /* libiconv.tbd */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libiconv.tbd; path = usr/lib/libiconv.tbd; sourceTree = SDKROOT; };
+		50A6978C2F700977006EE456 /* GCSPlayer.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GCSPlayer.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		7185A41F6F495C92C0BBEC3E /* libbz2.tbd */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libbz2.tbd; path = usr/lib/libbz2.tbd; sourceTree = SDKROOT; };
+		7AD0DA6A08E830B02B81864D /* libavutil.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; name = libavutil.xcframework; path = FFmpeg.xcframework/libavutil.xcframework; sourceTree = "<group>"; };
+		8AEFD4BDD8973D3B718AF4A8 /* libavformat.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; name = libavformat.xcframework; path = FFmpeg.xcframework/libavformat.xcframework; sourceTree = "<group>"; };
+		8F759BD5F2927D5493672AEC /* libswscale.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; name = libswscale.xcframework; path = FFmpeg.xcframework/libswscale.xcframework; sourceTree = "<group>"; };
+		B922A2D9783110EA9F3498BA /* VideoToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = VideoToolbox.framework; path = System/Library/Frameworks/VideoToolbox.framework; sourceTree = SDKROOT; };
+		BDA1BEFA896A067BAF5D6BAE /* libswresample.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; name = libswresample.xcframework; path = FFmpeg.xcframework/libswresample.xcframework; sourceTree = "<group>"; };
+		BE2D886AB4D6291C89E95D1C /* libz.tbd */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.tbd; path = usr/lib/libz.tbd; sourceTree = SDKROOT; };
+		C6767B8DE96CA2C47F07F241 /* libavcodec.xcframework */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = wrapper.xcframework; name = libavcodec.xcframework; path = FFmpeg.xcframework/libavcodec.xcframework; sourceTree = "<group>"; };
+		F99D93AC6C6D4BB2DFC54C71 /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedBuildFileExceptionSet section */
+		50A6979E2F700978006EE456 /* Exceptions for "GCSPlayer" folder in "GCSPlayer" target */ = {
+			isa = PBXFileSystemSynchronizedBuildFileExceptionSet;
+			membershipExceptions = (
+				Info.plist,
+			);
+			target = 50A6978B2F700977006EE456 /* GCSPlayer */;
+		};
+/* End PBXFileSystemSynchronizedBuildFileExceptionSet section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		50A6978E2F700977006EE456 /* GCSPlayer */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			exceptions = (
+				50A6979E2F700978006EE456 /* Exceptions for "GCSPlayer" folder in "GCSPlayer" target */,
+			);
+			path = GCSPlayer;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		50A697892F700977006EE456 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4E6DBE056B8FB270AC8FC5E8 /* AudioToolbox.framework in Frameworks */,
+				7E21A7A6A5E12E5713ED0515 /* VideoToolbox.framework in Frameworks */,
+				38AF1863100A576E37A0162F /* MetalKit.framework in Frameworks */,
+				8460A4CFB5E8C71F2D03C26A /* AVFoundation.framework in Frameworks */,
+				995943931757904D3D5322C3 /* libz.tbd in Frameworks */,
+				76942813CC8FAC990C409E95 /* libbz2.tbd in Frameworks */,
+				42BF871FC6677169C4089141 /* libiconv.tbd in Frameworks */,
+				D20F0F8138FFF553CB0D7AB3 /* libavcodec.xcframework in Frameworks */,
+				17BE14BBA5FF431CE5A77265 /* libavformat.xcframework in Frameworks */,
+				3A035B88E06A10459D93D3D4 /* libavutil.xcframework in Frameworks */,
+				D88D9F2810459562E9D66460 /* libswresample.xcframework in Frameworks */,
+				53F39DD8937DA66C6C6B6FA6 /* libswscale.xcframework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4C8A5B25E981DDA261DE91A9 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F99D93AC6C6D4BB2DFC54C71 /* AudioToolbox.framework */,
+				B922A2D9783110EA9F3498BA /* VideoToolbox.framework */,
+				35A0B251AF1E36BC44472B2F /* MetalKit.framework */,
+				49DFCF47A51CC1AA0A4186FA /* AVFoundation.framework */,
+				BE2D886AB4D6291C89E95D1C /* libz.tbd */,
+				7185A41F6F495C92C0BBEC3E /* libbz2.tbd */,
+				4C0E415C7AC7C0AC450F343F /* libiconv.tbd */,
+				C6767B8DE96CA2C47F07F241 /* libavcodec.xcframework */,
+				8AEFD4BDD8973D3B718AF4A8 /* libavformat.xcframework */,
+				7AD0DA6A08E830B02B81864D /* libavutil.xcframework */,
+				BDA1BEFA896A067BAF5D6BAE /* libswresample.xcframework */,
+				8F759BD5F2927D5493672AEC /* libswscale.xcframework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		50A697832F700977006EE456 = {
+			isa = PBXGroup;
+			children = (
+				50A6978E2F700977006EE456 /* GCSPlayer */,
+				50A6978D2F700977006EE456 /* Products */,
+				4C8A5B25E981DDA261DE91A9 /* Frameworks */,
+				1DCFB7E9E112B89DA91EEA8C /* banjun_encrypted.mp4 */,
+			);
+			sourceTree = "<group>";
+		};
+		50A6978D2F700977006EE456 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				50A6978C2F700977006EE456 /* GCSPlayer.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		50A6978B2F700977006EE456 /* GCSPlayer */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 50A6979F2F700978006EE456 /* Build configuration list for PBXNativeTarget "GCSPlayer" */;
+			buildPhases = (
+				50A697882F700977006EE456 /* Sources */,
+				50A697892F700977006EE456 /* Frameworks */,
+				50A6978A2F700977006EE456 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				50A6978E2F700977006EE456 /* GCSPlayer */,
+			);
+			name = GCSPlayer;
+			productName = GCSPlayer;
+			productReference = 50A6978C2F700977006EE456 /* GCSPlayer.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		50A697842F700977006EE456 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 2600;
+				LastUpgradeCheck = 2600;
+				TargetAttributes = {
+					50A6978B2F700977006EE456 = {
+						CreatedOnToolsVersion = 26.0.1;
+					};
+				};
+			};
+			buildConfigurationList = 50A697872F700977006EE456 /* Build configuration list for PBXProject "GCSPlayer" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 50A697832F700977006EE456;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 50A6978D2F700977006EE456 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				50A6978B2F700977006EE456 /* GCSPlayer */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		50A6978A2F700977006EE456 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				9FF8C9F49931170637F1DE7D /* banjun_encrypted.mp4 in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		50A697882F700977006EE456 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		50A697A02F700978006EE456 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GCSPlayer/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yoca.kilakit.GCSPlayer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "GCSPlayer/GCSPlayer-Bridging-Header.h";
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		50A697A12F700978006EE456 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = GCSPlayer/Info.plist;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.yoca.kilakit.GCSPlayer;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				STRING_CATALOG_GENERATE_SYMBOLS = YES;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_OBJC_BRIDGING_HEADER = "GCSPlayer/GCSPlayer-Bridging-Header.h";
+				SWIFT_UPCOMING_FEATURE_MEMBER_IMPORT_VISIBILITY = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		50A697A22F700978006EE456 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		50A697A32F700978006EE456 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 26.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		50A697872F700977006EE456 /* Build configuration list for PBXProject "GCSPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50A697A22F700978006EE456 /* Debug */,
+				50A697A32F700978006EE456 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		50A6979F2F700978006EE456 /* Build configuration list for PBXNativeTarget "GCSPlayer" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				50A697A02F700978006EE456 /* Debug */,
+				50A697A12F700978006EE456 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 50A697842F700977006EE456 /* Project object */;
+}
